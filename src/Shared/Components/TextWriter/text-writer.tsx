@@ -17,21 +17,20 @@ const TextWriter = ({ text, speed }: { text: string, speed: number }) => {
         if (state.index < text.length - 1) {
             const animKey = setInterval(() => {
                 setState(state => {
-                    if (state.index >= text.length - 1) {
+                    if (state.index > text.length - 1) {
                         clearInterval(animKey);
                         return { ...state };
                     }
-                    return { ...state, index: state.index + 1 };
+                    return {
+                        writtenText: state.writtenText + text[state.index],
+                        index: state.index + 1
+                    };
                 });
             }, speed);
 
             return () => clearInterval(animKey);
         }
-    });
-
-    React.useEffect(() => {
-        setState(state => ({ ...state, writtenText: state.writtenText + text[state.index] }))
-    }, [state.index]);
+    }, []);
 
     // Reset the state when the text is changed (Language change)
     React.useEffect(() => {

@@ -1,6 +1,7 @@
 .navigation-component {
     width: 15%;
-
+    min-width: 15%;
+    
     a {
         text-decoration: none;
         font-size: larger;  
@@ -9,7 +10,7 @@
             background-color: var(--bs-primary);
 
             .flexer {
-                transition: flex-grow 1s;
+                transition: flex-grow 0.5s;
             }
 
             &:hover .flexer {

@@ -1,26 +1,24 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Displayer from '../Displayer/displayer';
+import Home from '../../Components/Home/home';
+import Slider from '../../Components/Slider/slider';
+import 'animate.css';
 
-const Home = () => <>Home</>
-const Dashboard = () => <>Dashboard</>
-const Calendar = () => <>Calendar</>
+const Calendar = () => <>Calendar</>;
 
 export const routes = [
-  { id: '1', path: '/', pathName: "Home", component: <Home /> },
-  { id: '2', path: 'cashboard', pathName: 'Dashboard', component: <Dashboard /> },
-  { id: '3', path: 'calendar', pathName: 'Calendar', component: <Calendar /> }
+  { path: '/', pathName: "Home", Component: Home },
+  { path: 'slider', pathName: 'Slider', Component: Slider }
 ];
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Displayer>
-        <Routes>
-          {routes.map(route => <Route key={route.id} path={route.path} element={route.component} />)}
-        </Routes>
-      </Displayer>
-    </BrowserRouter>
+    <Displayer>
+      <Routes>
+        {routes.map(({ path, Component }) => <Route key={path} path={path} element={<Component />} />)}
+      </Routes>
+    </Displayer>
   )
 }
 

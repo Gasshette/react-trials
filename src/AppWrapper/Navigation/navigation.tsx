@@ -9,13 +9,19 @@ interface NavigationProps {
 
 const Navigation = ({ padding }: NavigationProps) => {
     const buildLinks = () => {
-        return routes.map(route =>
-            <NavLink key={route.id} to={route.path} className={navData => navData.isActive ? 'active' : ''}>
-                <li className="list-group-item mb-2 rounded-pill d-flex">
-                    <div className="flexer"></div>
-                    <div>{route.pathName}</div>
-                </li>
-            </NavLink>);
+        return (
+            <>
+                {routes.map(route =>
+                    <NavLink key={route.path} to={route.path} className={navData => navData.isActive ? 'active' : ''}>
+                        <li className="list-group-item mb-2 rounded-pill d-flex">
+                            <div className="flexer"></div>
+                            <div>{route.pathName}</div>
+                        </li>
+                    </NavLink>
+                )}
+                <h5 className="mt-5 text-center"><a className="text-light" href="https://animate.style/" target="__blank">https://animate.style/</a></h5>
+            </>
+        );
     }
 
     return (

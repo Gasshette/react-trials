@@ -2,21 +2,20 @@
     position: relative;
     background-color: transparent;
     border: none;
-    // border: -2px solid var(--bs-secondary);
     padding: 50px;
     
     &:after, &:before {
         position: absolute;
-        // border-radius: 4px;
     }
 
     &:hover {
         &:hover:before {
             content: '';
-            border-top: 2px solid var(--bs-primary);
-            border-left: 2px solid var(--bs-primary);
+            border-top: 2px solid;
+            border-left: 2px solid;
             border-bottom: none;
             border-right: none;
+            @apply border-blue-500;
             left: 0;
             top: 0;        
             animation: border-anim 1s forwards;
@@ -24,10 +23,11 @@
         
         &:hover:after {
             content: '';
-            border-bottom: 2px solid var(--bs-primary);
-            border-right: 2px solid var(--bs-primary);
+            border-bottom: 2px solid;
+            border-right: 2px solid;
             border-top: none;
             border-left: none;
+            @apply border-blue-500;
             right: 0;
             bottom: 0;
             animation: border-anim 1s forwards;

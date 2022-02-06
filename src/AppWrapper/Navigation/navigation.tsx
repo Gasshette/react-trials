@@ -13,7 +13,7 @@ const Navigation = ({ style }: NavigationProps) => {
             <>
                 {routes.map(route =>
                     <NavLink key={route.path} to={route.path} className={navData => navData.isActive ? 'active' : ''}>
-                        <li className="mb-2 flex p-3 rounded-full hover:bg-stone-700 text-slate-100">
+                        <li className="mb-2 flex p-3 text-2xl rounded-full hover:bg-stone-700 text-slate-100">
                             <div className="flexer"></div>
                             <div>{route.pathName}</div>
                         </li>

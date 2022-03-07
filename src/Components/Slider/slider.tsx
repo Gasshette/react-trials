@@ -13,9 +13,10 @@ const Slider = () => {
     const inc = () => {
         const nextIndex = index >= images.length - 1 ? 0 : index + 1;
 
-        imgRefs.current[index].classList = `inline-block animate__animated animate__fadeOutLeft`;
-        imgRefs.current[nextIndex].classList = `inline-block animate__animated animate__fadeInRight`;
+        imgRefs.current[index].classList = `inline-block animate__animated animate__rotateOut`;
+        imgRefs.current[nextIndex].classList = `inline-block animate__animated animate__rotateIn`;
 
+        // Wait for the animation to end before to set the new index
         setTimeout(() => {
             setIndex(nextIndex);
         }, 1000);
@@ -24,9 +25,10 @@ const Slider = () => {
     const dec = () => {
         const nextIndex = index <= 0 ? images.length - 1 : index - 1;
 
-        imgRefs.current[index].classList = `inline-block animate__animated animate__fadeOutRight`;
-        imgRefs.current[nextIndex].classList = `inline-block animate__animated animate__fadeInLeft`;
+        imgRefs.current[index].classList = `inline-block animate__animated animate__rotateOut`;
+        imgRefs.current[nextIndex].classList = `inline-block animate__animated animate__rotateIn`;
 
+        // Wait for the animation to end before to set the new index
         setTimeout(() => {
             setIndex(nextIndex);
         }, 1000);

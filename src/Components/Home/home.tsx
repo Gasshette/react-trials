@@ -7,7 +7,6 @@ const Home = () => {
 
     return (
         <div className="home-component">
-            <Button text="Cool button" />
             <TextWriter text={text} speed={50} />
         </div>
     )

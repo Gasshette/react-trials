@@ -19,8 +19,13 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+    @apply text-rose-400;
 }
 
-code {
-  @apply text-rose-400;
+input {
+  @apply text-stone-700;
+}
+
+abbr {
+  @apply no-underline;
 }

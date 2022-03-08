@@ -44,4 +44,11 @@ export class Helpers {
      * @returns the capitalized string
      */
     public static capitalize = (string: string) => `${string[0].toUpperCase()}${string.substring(1)}`;
+
+    /**
+     * Test if the param is null, empty of an empty string.
+     * @param param The param to test
+     * @returns A boolean : True if the param has value, else false
+     */
+    public static isFilled = (param: any) => param !== null && param !== undefined && param !== '';
 }

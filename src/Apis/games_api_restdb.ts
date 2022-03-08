@@ -8,7 +8,7 @@ import { IVote, Vote } from "../Shared/Interfaces/IVote";
  * @param callback Do something after the request
  * @returns An array of IVote
  */
-export const getUserVotes = async (userId: string, callback: Function) => {
+export const getUserVotes = async (userId: string) => {
     const votesPromise = await fetch(`${AppUrls.restdb_url}/votes?q={"userId":"${userId}"}`, {
         headers: {
             'x-apikey': `${process.env.REACT_APP_RESTDB_APIKEY}`,
@@ -16,7 +16,8 @@ export const getUserVotes = async (userId: string, callback: Function) => {
     });
 
     const json: Array<IVote> = await votesPromise.json();
-    callback(json);
+
+    return json;
 }
 
 /**
@@ -40,12 +41,12 @@ export const getGames = async () => {
  * @param game The game to add in restDB (from Twitch Helix API)
  * @param callback A callback function triggered after the end of the post request
  */
-export const addGame = async (game: IGame, callback: Function) => {
+export const addGame = async (game: IGame) => {
     game.points = game.points ?? 0;
 
     try {
         if (!await doesGameExists(game)) {
-            await fetch(`${AppUrls.restdb_url}/games`, {
+            const addedGame = await fetch(`${AppUrls.restdb_url}/games`, {
                 'method': 'POST',
                 headers: {
                     'x-apikey': `${process.env.REACT_APP_RESTDB_APIKEY}`,
@@ -54,7 +55,7 @@ export const addGame = async (game: IGame, callback: Function) => {
                 body: JSON.stringify(game)
             });
 
-            callback();
+            console.log('added game = ', addedGame);
         }
     } catch (error) {
         console.log('An error occured while adding a game : ', JSON.stringify(game));

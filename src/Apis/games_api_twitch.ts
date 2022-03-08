@@ -13,8 +13,8 @@ export const debouncedSearchMatchingGames =
  * 
  * @param e onChange event
  * @param token twitch auth token
+ * @param setIsLoading loagin setter method from LoaderContext to manage the loading state in a debounced function
  * @param callback Do something after the search
- * @returns 
  */
 export const searchMatchingGames = async (e: React.ChangeEvent<HTMLInputElement>, tokenType: string, token: string, setIsLoading: Function, callback: Function) => {
     if (e.target.value.length <= 0) {

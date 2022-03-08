@@ -7,6 +7,7 @@ import 'animate.css';
 import Games from '../../Components/Games/games';
 import TwitchAuthGuard from '../../Shared/Components/TwitchAuthGuard/twitchAuthGuard';
 import TwitchAuthProvider from '../../Context/twitchAuthProvider';
+import LoaderProvider from '../../Context/loaderProvider';
 
 export const routes = [
   { path: '/', pathName: "Home", Component: Home },
@@ -17,11 +18,13 @@ export const routes = [
 const App = () => {
   return (
     <TwitchAuthProvider>
-      <Displayer>
-        <Routes>
-          {routes.map(({ path, Component }) => <Route key={path} path={path} element={Component === Games ? <TwitchAuthGuard><Component /></TwitchAuthGuard> : <Component />} />)}
-        </Routes>
-      </Displayer>
+      <LoaderProvider>
+        <Displayer>
+          <Routes>
+            {routes.map(({ path, Component }) => <Route key={path} path={path} element={Component === Games ? <TwitchAuthGuard><Component /></TwitchAuthGuard> : <Component />} />)}
+          </Routes>
+        </Displayer>
+      </LoaderProvider>
     </TwitchAuthProvider>
   )
 }

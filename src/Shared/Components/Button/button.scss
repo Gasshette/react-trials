@@ -6,7 +6,7 @@
         position: absolute;
     }
 
-    &:hover {
+    &:not(:disabled):hover {
         &:hover:before {
             content: '';
             border-top: 2px solid transparent;

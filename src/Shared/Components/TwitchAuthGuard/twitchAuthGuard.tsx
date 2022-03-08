@@ -13,7 +13,7 @@ const TwitchAuthGuard: React.FC = ({ children }) => {
         }
     }, []);
 
-    if (!authedUser) return <>Loading, please wait</>;
+    if (!authedUser) return <>Authentication running...</>;
     return <>{children}</>
 }
 

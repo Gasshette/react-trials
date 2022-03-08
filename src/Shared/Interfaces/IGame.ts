@@ -1,7 +1,7 @@
 export default interface IGame {
     _id?: string;
     id: string;
-    box_art_url: string;
+    boxArtUrl: string;
     name: string;
     points?: number
 }

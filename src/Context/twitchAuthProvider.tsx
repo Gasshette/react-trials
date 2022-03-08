@@ -1,6 +1,11 @@
 import React from 'react';
 import { IAuthedUser } from '../Shared/Interfaces/IAuthedUser';
 
+interface ITwitchAuthContext {
+    authedUser: IAuthedUser,
+    setAuthedUser: React.Dispatch<React.SetStateAction<IAuthedUser>>
+}
+
 const TwitchAuthContext = React.createContext<any>(undefined);
 
 const TwitchAuthProvider: React.FC = ({ children }) => {
@@ -15,9 +20,5 @@ const TwitchAuthProvider: React.FC = ({ children }) => {
 
 export default TwitchAuthProvider;
 
-interface ITwitchContext {
-    authedUser: IAuthedUser,
-    setAuthedUser: React.Dispatch<React.SetStateAction<IAuthedUser | undefined>>
-}
 
-export const useTwitchContext = () => React.useContext<ITwitchContext>(TwitchAuthContext);
+export const useTwitchContext = () => React.useContext<ITwitchAuthContext>(TwitchAuthContext);

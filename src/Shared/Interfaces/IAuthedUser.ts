@@ -34,7 +34,7 @@ export interface IAuthedUser {
      */
     preferredUsername: string;
     /**
-     * Subject or end-user identifier
+     * Subject or end-user identifier (user id)
      */
     sub: string;
     /**

@@ -24,8 +24,8 @@ export const getUserVotes = async (userId: string) => {
  * Get games from restDB
  * @param callback Do something after the GET
  */
-export const getGames = async () => {
-    const gamesPromise = await fetch(`${AppUrls.restdb_url}/games`, {
+export const getGames = async (id: string) => {
+    const gamesPromise = await fetch(`${AppUrls.restdb_url}/games?q={"userId":"${id}"}`, {
         headers: {
             'x-apikey': `${process.env.REACT_APP_RESTDB_APIKEY}`,
         }
@@ -46,7 +46,7 @@ export const addGame = async (game: IGame) => {
 
     try {
         if (!await doesGameExists(game)) {
-            const addedGame = await fetch(`${AppUrls.restdb_url}/games`, {
+            await fetch(`${AppUrls.restdb_url}/games`, {
                 'method': 'POST',
                 headers: {
                     'x-apikey': `${process.env.REACT_APP_RESTDB_APIKEY}`,
@@ -54,15 +54,13 @@ export const addGame = async (game: IGame) => {
                 },
                 body: JSON.stringify(game)
             });
-
-            console.log('added game = ', addedGame);
         }
     } catch (error) {
         console.log('An error occured while adding a game : ', JSON.stringify(game));
     }
 }
 
-export const managePoints = async (game: IGame, action: 'add' | 'remove', vote: IVote | undefined, userId: string) => {
+export const managePoints = async (game: IGame, action: 'add' | 'remove', vote: IVote | undefined, voterId: string, listOwnerId: string) => {
     try {
         const newGame = { ...game };
         let newVote;
@@ -74,7 +72,7 @@ export const managePoints = async (game: IGame, action: 'add' | 'remove', vote: 
             voteMethod = 'PATCH';
             voteUrlParam = `/${vote._id}`
         } else {
-            newVote = new Vote(userId, game.id);
+            newVote = new Vote(voterId, listOwnerId, game.id);
             voteMethod = 'POST';
             voteUrlParam = '';
         }

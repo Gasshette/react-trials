@@ -6,7 +6,7 @@ import { Helpers } from '../../Shared/Helpers/helpers';
 import IGame from '../../Shared/Interfaces/IGame';
 import { IVote } from '../../Shared/Interfaces/IVote';
 
-const Game = ({ game, matchingVote, isSearchingGames, manageCounter, getAndSetGames }: { game: IGame, matchingVote: IVote | undefined, isSearchingGames: boolean, manageCounter: Function, getAndSetGames: Function }) => {
+const Game = ({ game, displayedUserId, matchingVote, isSearchingGames, manageCounter, getAndSetGames }: { game: IGame, displayedUserId: string, matchingVote: IVote | undefined, isSearchingGames: boolean, manageCounter: Function, getAndSetGames: Function }) => {
     const [counterState, setCounterState] = React.useState<{ isIncDisabled: boolean, isDecDisabled: boolean }>({ isIncDisabled: true, isDecDisabled: true })
     const { withLoader } = useLoaderContext();
 
@@ -18,7 +18,8 @@ const Game = ({ game, matchingVote, isSearchingGames, manageCounter, getAndSetGa
     }, [matchingVote]);
 
     const addNewGame = async () => {
-        await addGame(game);
+
+        await addGame({ ...game, userId: displayedUserId });
         await getAndSetGames();
     };
 
